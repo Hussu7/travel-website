@@ -163,10 +163,12 @@ app.patch("/blogs/:id", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 2000;
-
-app.listen(PORT, () => {
-  console.log(`App running at port ${PORT}`);
-});
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 2000;
+  app.listen(PORT, () => {
+    console.log(`App running at port ${PORT}`);
+  });
+}
 
 module.exports = app;
