@@ -25,18 +25,52 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* Public Routes with Navbar */}
-          <Route path="/*" element={
+          <Route path="/" element={
             <>
               <Navbar />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/destinations" element={<Destinations />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:id" element={<SingleBlog />} />
-                <Route path="/tips" element={<TravelTips />} />
-                <Route path="/contact" element={<Contact />} />
-              </Routes>
+              <Home />
+              <Footer />
+            </>
+          } />
+          <Route path="/destinations" element={
+            <>
+              <Navbar />
+              <Destinations />
+              <Footer />
+            </>
+          } />
+          <Route path="/about" element={
+            <>
+              <Navbar />
+              <About />
+              <Footer />
+            </>
+          } />
+          <Route path="/blog" element={
+            <>
+              <Navbar />
+              <Blog />
+              <Footer />
+            </>
+          } />
+          <Route path="/blog/:id" element={
+            <>
+              <Navbar />
+              <SingleBlog />
+              <Footer />
+            </>
+          } />
+          <Route path="/tips" element={
+            <>
+              <Navbar />
+              <TravelTips />
+              <Footer />
+            </>
+          } />
+          <Route path="/contact" element={
+            <>
+              <Navbar />
+              <Contact />
               <Footer />
             </>
           } />
