@@ -8,7 +8,8 @@ const Blog = require("./model/blogModel");
 connectDatabase();
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"],
+    origin: ["http://localhost:5173", "http://localhost:5174", "https://travel-website-frontend.vercel.app", process.env.FRONTEND_URL],
+    credentials: true
   })
 );
 app.use(express.json());
@@ -162,10 +163,10 @@ app.patch("/blogs/:id", async (req, res) => {
   }
 });
 
-app.listen(2000, () => {
-  console.log("App running at port 2000");
+const PORT = process.env.PORT || 2000;
+
+app.listen(PORT, () => {
+  console.log(`App running at port ${PORT}`);
 });
 
-// API
-
-//
+module.exports = app;

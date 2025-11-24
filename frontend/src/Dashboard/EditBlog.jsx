@@ -42,7 +42,7 @@ function EditBlog() {
   const fetchBlog = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:2000/blogs/${id}`);
+      const response = await axios.get(`${API_URL}/blogs/${id}`);
       if (response.data.status === 200) {
         const blogData = response.data.data;
         setFormData(blogData);
@@ -74,9 +74,9 @@ function EditBlog() {
       
       let response;
       if (id) {
-        response = await axios.patch(`http://localhost:2000/blogs/${id}`, dataToSave);
+        response = await axios.patch(`${API_URL}/blogs/${id}`, dataToSave);
       } else {
-        response = await axios.post('http://localhost:2000/blogs', dataToSave);
+        response = await axios.post(`${API_URL}/blogs`, dataToSave);
       }
 
       if (response.status === 200 || response.status === 201) {
@@ -102,7 +102,7 @@ function EditBlog() {
     if (!window.confirm('Are you sure you want to delete this blog?')) return;
 
     try {
-      await axios.delete(`http://localhost:2000/blogs/${id}`);
+      await axios.delete(`${API_URL}/blogs/${id}`);
       navigate('/admin/dashboard');
     } catch (error) {
       console.error('Error deleting blog:', error);

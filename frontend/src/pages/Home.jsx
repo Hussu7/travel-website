@@ -2,6 +2,7 @@ import Button from "../components/Button";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import API_URL from "../config/api";
 
 function Home() {
   const [blogs, setBlogs] = useState([]);
@@ -22,7 +23,7 @@ function Home() {
   //api call
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:2000/blogs");
+      const response = await axios.get(`${API_URL}/blogs`);
       if (response.data.status === 200) {
         setBlogs(response.data.data);
         return;

@@ -14,7 +14,7 @@ function Analytics() {
   const fetchAnalyticsData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:2000/blogs');
+      const response = await axios.get(`${API_URL}/blogs`);
       if (response.data.status === 200) {
         setBlogs(response.data.data);
       }

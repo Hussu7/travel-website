@@ -61,7 +61,7 @@ const SingleBlog = () => {
     if (!blog) return;
     const fetchRelated = async () => {
       try {
-        const res = await axios.get("http://localhost:2000/blogs");
+        const res = await axios.get(`${API_URL}/blogs`);
         const all = (res.data && res.data.data) || [];
         const others = all.filter((b) => b._id !== blog._id);
 

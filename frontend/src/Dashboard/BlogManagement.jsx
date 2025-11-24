@@ -19,7 +19,7 @@ function BlogManagement() {
   const fetchBlogs = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:2000/blogs');
+      const response = await axios.get(`${API_URL}/blogs`);
       if (response.data.status === 200) {
         setBlogs(response.data.data);
       }
@@ -34,7 +34,7 @@ function BlogManagement() {
     if (!window.confirm('Are you sure you want to delete this blog?')) return;
     
     try {
-      await axios.delete(`http://localhost:2000/blogs/${id}`);
+      await axios.delete(`${API_URL}/blogs/${id}`);
       setBlogs(prev => prev.filter(blog => blog._id !== id));
     } catch (error) {
       console.error('Error deleting blog:', error);
@@ -44,7 +44,7 @@ function BlogManagement() {
   const handleStatusToggle = async (id, currentStatus) => {
     const newStatus = currentStatus === 'published' ? 'draft' : 'published';
     try {
-      await axios.patch(`http://localhost:2000/blogs/${id}`, { status: newStatus });
+      await axios.patch(`${API_URL}/blogs/${id}`, { status: newStatus });
       setBlogs(prev => 
         prev.map(blog => 
           blog._id === id ? { ...blog, status: newStatus } : blog

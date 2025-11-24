@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import API_URL from "../config/api";
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
@@ -22,7 +23,7 @@ function Blog() {
   const fetchBlogs = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get("http://localhost:2000/blogs");
+      const response = await axios.get(`${API_URL}/blogs`);
       if (response.data.status === 200) {
         setBlogs(response.data.data);
         setFilteredBlogs(response.data.data);

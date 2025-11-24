@@ -40,7 +40,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get("http://localhost:2000/blogs");
+        const response = await axios.get(`${API_URL}/blogs`);
         if (response.data.status === 200) {
           setBlogs(response.data.data);
           return;
@@ -56,7 +56,7 @@ function Dashboard() {
     const creatBlogs = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:2000/blogs",
+          `${API_URL}/blogs`,
           formData
         );
         console.log(response);
@@ -75,7 +75,7 @@ function Dashboard() {
           });
           setSubmit(false);
           // Refresh blogs list
-          const blogsResponse = await axios.get("http://localhost:2000/blogs");
+          const blogsResponse = await axios.get(`${API_URL}/blogs`);
           if (blogsResponse.data.status === 200) {
             setBlogs(blogsResponse.data.data);
           }
@@ -116,7 +116,7 @@ function Dashboard() {
     if (!window.confirm("Are you sure you want to delete this blog?")) return;
     (async () => {
       try {
-        await axios.delete(`http://localhost:2000/blogs/${id}`);
+        await axios.delete(`${API_URL}/blogs/${id}`);
         setBlogs((prev) => prev.filter((blog) => blog._id !== id));
         showSuccess("Blog deleted successfully!");
       } catch (err) {
